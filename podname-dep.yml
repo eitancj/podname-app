@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: podname-deploy
+  labels:
+    app: podname
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: podname
+  template:
+    metadata:
+      labels:
+        app: podname
+    spec:
+      containers:
+        - name: podname-ctr
+          image: podname:v1.0
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "0.2"
+            limits:
+              memory: "64Mi"
+              cpu: "0.25"
